@@ -1,0 +1,25 @@
+{
+  "name": "vcite-verifier",
+  "version": "1.0.0",
+  "description": "Deterministic AI Claim &amp; Citation Verifier to detect LLM hallucinations.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lutfifr31/vcite-verifier.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/lutfifr31/vcite-verifier/issues"
+  },
+  "homepage": "https://github.com/lutfifr31/vcite-verifier#readme"
+}
