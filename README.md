@@ -1,3 +1,20 @@
+<p align="center">
+  <img src="./docs/vcite-banner.svg" alt="VCite Animated Banner" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=16&duration=3000&pause=1000&color=38BDF8&center=true&vCenter=true&width=680&lines=Deterministic+AI+Claim+%26+Citation+Verifier;Zero+LLM+API+Dependencies+%E2%80%A2+Pure+Lexical+%26+Entity+Guard;8%2F8+Automated+Unit+Tests+Passing+(node+--test)" alt="Typing SVG" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Architecture-Modular%20ES6-facc15?style=for-the-badge&logo=javascript&logoColor=black" alt="Modular ES6" />
+  <img src="https://img.shields.io/badge/Engine-Deterministic%20(Zero%20API)-38bdf8?style=for-the-badge" alt="Deterministic Engine" />
+  <img src="https://img.shields.io/badge/Unit%20Tests-8%2F8%20PASS-10b981?style=for-the-badge&logo=node.js&logoColor=white" alt="Unit Tests Pass" />
+  <img src="https://img.shields.io/badge/Docs-SRS%20%2B%20PlantUML-f43f5e?style=for-the-badge" alt="Docs Complete" />
+</p>
+
+---
+
 # VCite — AI Claim & Citation Verifier
 
 **Sistem Validasi Deterministik Anti-Halusinasi AI**
@@ -25,6 +42,7 @@ Kode proyek dipisahkan secara tegas antara dokumentasi, logika inti (`src/core/`
 ```text
 vcite-verifier/
 ├── docs/
+│   ├── vcite-banner.svg        # Animated SVG hero banner
 │   ├── SRS.md                  # Spesifikasi kebutuhan fungsional & non-fungsional
 │   ├── sequence-diagram.puml   # Diagram interaksi antar-modul (PlantUML)
 │   └── TEST_CASES.md           # Matriks skenario pengujian & status hasil

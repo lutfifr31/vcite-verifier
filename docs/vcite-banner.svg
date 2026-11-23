@@ -1,0 +1,368 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
+  <defs>
+    
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#060913" />
+      <stop offset="50%" stop-color="#0b1324" />
+      <stop offset="100%" stop-color="#070d1a" />
+    </linearGradient>
+
+    
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="45%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+
+    
+    <linearGradient id="shimmerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+
+    
+    <linearGradient id="panelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#11192c" />
+      <stop offset="100%" stop-color="#090f1d" />
+    </linearGradient>
+
+    
+    <linearGradient id="laserBeam" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0" />
+      <stop offset="75%" stop-color="#38bdf8" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0.9" />
+    </linearGradient>
+
+    
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#1e293b" stroke-width="0.7" stroke-opacity="0.45" />
+    </pattern>
+
+    
+    <clipPath id="panelClip">
+      <rect x="615" y="44" width="535" height="332" rx="16" />
+    </clipPath>
+
+    <clipPath id="titleClip">
+      <text x="72" y="198" font-family="&#39;Segoe UI&#39;, Arial, sans-serif" font-size="112" font-weight="900" letter-spacing="6">VCITE</text>
+    </clipPath>
+
+    <style>
+      /* ===== ENTRANCE TRANSITIONS ===== */
+      @keyframes slideInRight {
+        0% { opacity: 0; transform: translateX(-28px); }
+        100% { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes slideInUp {
+        0% { opacity: 0; transform: translateY(18px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes titleShimmer {
+        0%, 20% { transform: translateX(-160px) skewX(-20deg); }
+        55%, 100% { transform: translateX(460px) skewX(-20deg); }
+      }
+
+      /* ===== 9-SECOND DUAL-SCENE STATE TRANSITION LOOP ===== */
+      /* Scene 1: VERIFIED (0% to 48%) */
+      @keyframes sceneOneTransition {
+        0%   { opacity: 0; transform: translateX(26px); }
+        5%   { opacity: 1; transform: translateX(0px); }
+        43%  { opacity: 1; transform: translateX(0px); }
+        49%  { opacity: 0; transform: translateX(-26px); }
+        100% { opacity: 0; transform: translateX(-26px); }
+      }
+
+      /* Scene 2: HALLUCINATION BLOCKED (50% to 98%) */
+      @keyframes sceneTwoTransition {
+        0%, 49% { opacity: 0; transform: translateX(26px); }
+        55%     { opacity: 1; transform: translateX(0px); }
+        93%     { opacity: 1; transform: translateX(0px); }
+        99%     { opacity: 0; transform: translateX(-26px); }
+        100%    { opacity: 0; transform: translateX(26px); }
+      }
+
+      /* Laser Scanner Sweep (Runs once per scene: 6%-20% and 56%-70%) */
+      @keyframes scannerSweep {
+        0%, 5%   { opacity: 0; transform: translateY(88px); }
+        8%       { opacity: 1; transform: translateY(88px); }
+        20%      { opacity: 1; transform: translateY(255px); }
+        23%, 55% { opacity: 0; transform: translateY(255px); }
+        58%      { opacity: 1; transform: translateY(88px); }
+        70%      { opacity: 1; transform: translateY(255px); }
+        73%, 100%{ opacity: 0; transform: translateY(255px); }
+      }
+
+      /* Scene 1 Progress Bar Fill (0% -&gt; 100%) */
+      @keyframes barFillOne {
+        0%, 8%   { width: 0px; }
+        22%, 48% { width: 475px; }
+        50%, 100%{ width: 0px; }
+      }
+
+      /* Scene 2 Progress Bar Fill (0% -&gt; 86% lexical match) */
+      @keyframes barFillTwo {
+        0%, 58%  { width: 0px; }
+        72%, 98% { width: 408px; }
+        100%     { width: 0px; }
+      }
+
+      /* Verdict Pop-In Transition after Scan Completes */
+      @keyframes verdictPopOne {
+        0%, 19%  { opacity: 0; transform: scale(0.88) translateY(8px); }
+        24%, 44% { opacity: 1; transform: scale(1) translateY(0px); }
+        49%, 100%{ opacity: 0; transform: scale(0.95); }
+      }
+
+      @keyframes verdictPopTwo {
+        0%, 69%  { opacity: 0; transform: scale(0.88) translateY(8px); }
+        73%      { opacity: 1; transform: scale(1.03) translateY(0px); }
+        76%, 94% { opacity: 1; transform: scale(1) translateY(0px); }
+        99%, 100%{ opacity: 0; transform: scale(0.95); }
+      }
+
+      /* Flowing Connector Dots */
+      @keyframes dataStream {
+        to { stroke-dashoffset: -28; }
+      }
+
+      @keyframes pulseLive {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.35; }
+      }
+
+      .enter-1 { animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+      .enter-2 { animation: slideInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; }
+      .enter-3 { animation: slideInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+      .enter-4 { animation: slideInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
+
+      .shimmer-rect { animation: titleShimmer 4.5s ease-in-out infinite; }
+      .scene-1 { animation: sceneOneTransition 9s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+      .scene-2 { animation: sceneTwoTransition 9s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+      .scanner { animation: scannerSweep 9s ease-in-out infinite; }
+      .bar-1 { animation: barFillOne 9s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+      .bar-2 { animation: barFillTwo 9s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+      .verdict-1 { transform-origin: 882px 324px; animation: verdictPopOne 9s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+      .verdict-2 { transform-origin: 882px 324px; animation: verdictPopTwo 9s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+      .stream-line { stroke-dasharray: 7 7; animation: dataStream 0.9s linear infinite; }
+      .live-dot { animation: pulseLive 1.5s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  
+  <rect width="1200" height="420" rx="16" fill="url(#bgGrad)" />
+  <rect width="1200" height="420" rx="16" fill="url(#grid)" />
+
+  
+  <path d="M 28 64 L 28 36 Q 28 22 42 22 L 76 22" fill="none" stroke="#facc15" stroke-width="3.5" stroke-linecap="round" filter="url(#goldGlow)" />
+  <path d="M 28 356 L 28 384 Q 28 398 42 398 L 76 398" fill="none" stroke="#facc15" stroke-width="3.5" stroke-linecap="round" filter="url(#goldGlow)" />
+  <path d="M 1124 22 L 1158 22 Q 1172 22 1172 36 L 1172 64" fill="none" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow)" />
+  <path d="M 1124 398 L 1158 398 Q 1172 398 1172 384 L 1172 356" fill="none" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" filter="url(#cyanGlow)" />
+
+  
+
+  
+  <g class="enter-1">
+    <rect x="74" y="56" width="386" height="34" rx="17" fill="#111827" stroke="#eab308" stroke-width="1.3" />
+    <circle cx="94" cy="73" r="5" fill="#facc15" class="live-dot" />
+    <text x="110" y="78" fill="#fde047" font-family="Consolas, monospace" font-size="13.5" font-weight="700" letter-spacing="1.1">
+      DETERMINISTIC ENGINE  •  ZERO LLM API
+    </text>
+  </g>
+
+  
+  <g class="enter-2">
+    <text x="72" y="198" fill="url(#titleGrad)" font-family="&#39;Segoe UI&#39;, Arial, sans-serif" font-size="112" font-weight="900" letter-spacing="6" filter="url(#goldGlow)">
+      VCITE
+    </text>
+    <g clip-path="url(#titleClip)">
+      <rect x="72" y="95" width="90" height="120" fill="url(#shimmerGrad)" class="shimmer-rect" />
+    </g>
+  </g>
+
+  
+  <g class="enter-3">
+    <rect x="74" y="224" width="490" height="50" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.4" />
+    <rect x="74" y="224" width="6" height="50" rx="3" fill="#38bdf8" />
+    <text x="98" y="256" fill="#f8fafc" font-family="&#39;Segoe UI&#39;, Arial, sans-serif" font-size="22.5" font-weight="700" letter-spacing="0.4">
+      AI Claim &amp; Citation Verifier
+    </text>
+  </g>
+
+  
+  <g class="enter-4">
+    <rect x="74" y="296" width="164" height="36" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.2" />
+    <circle cx="92" cy="314" r="4" fill="#facc15" />
+    <text x="104" y="319" fill="#e2e8f0" font-family="&#39;Segoe UI&#39;, sans-serif" font-size="13" font-weight="600">
+      Cosine Similarity
+    </text>
+
+    <rect x="248" y="296" width="144" height="36" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.2" />
+    <circle cx="266" cy="314" r="4" fill="#38bdf8" />
+    <text x="278" y="319" fill="#e2e8f0" font-family="&#39;Segoe UI&#39;, sans-serif" font-size="13" font-weight="600">
+      Entity Guard
+    </text>
+
+    <rect x="402" y="296" width="162" height="36" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.2" />
+    <circle cx="420" cy="314" r="4" fill="#10b981" class="live-dot" />
+    <text x="432" y="319" fill="#6ee7b7" font-family="&#39;Segoe UI&#39;, sans-serif" font-size="13" font-weight="600">
+      8/8 Unit Tests
+    </text>
+  </g>
+
+  
+
+  
+  <rect x="615" y="44" width="535" height="332" rx="16" fill="url(#panelGrad)" stroke="#334155" stroke-width="1.6" />
+
+  
+  <path d="M 615 60 Q 615 44 631 44 L 1134 44 Q 1150 44 1150 60 L 1150 84 L 615 84 Z" fill="#131c31" />
+  <line x1="615" y1="84" x2="1150" y2="84" stroke="#1e293b" stroke-width="1.5" />
+  <circle cx="639" cy="64" r="5" fill="#f43f5e" />
+  <circle cx="657" cy="64" r="5" fill="#facc15" />
+  <circle cx="675" cy="64" r="5" fill="#10b981" />
+  <text x="698" y="68" fill="#94a3b8" font-family="Consolas, monospace" font-size="12" font-weight="700" letter-spacing="1">
+    VCITE_VERIFIER // LIVE STATE TRANSITION
+  </text>
+  <circle cx="1126" cy="64" r="4.5" fill="#38bdf8" class="live-dot" />
+
+  
+  <g clip-path="url(#panelClip)">
+
+    
+    <g class="scene-1">
+      <rect x="642" y="98" width="196" height="24" rx="6" fill="#064e3b" stroke="#10b981" stroke-width="1" />
+      <text x="740" y="114" text-anchor="middle" fill="#6ee7b7" font-family="Consolas, monospace" font-size="11" font-weight="700">
+        CASE 01 // EXACT MATCH
+      </text>
+
+      
+      <rect x="642" y="132" width="222" height="86" rx="10" fill="#0f172a" stroke="#eab308" stroke-width="1.3" />
+      <text x="656" y="152" fill="#facc15" font-family="Consolas, monospace" font-size="11" font-weight="700">
+        GROUND TRUTH (SOURCE)
+      </text>
+      <text x="656" y="176" fill="#e2e8f0" font-family="&#39;Segoe UI&#39;, sans-serif" font-size="13.5" font-weight="600">
+        "VCite dirilis resmi pada
+      </text>
+      <text x="656" y="198" fill="#fef08a" font-family="Consolas, monospace" font-size="14" font-weight="700">
+        tahun 2024."
+      </text>
+
+      
+      <line x1="864" y1="175" x2="900" y2="175" stroke="#10b981" stroke-width="2.5" class="stream-line" />
+
+      
+      <rect x="900" y="132" width="222" height="86" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="1.3" />
+      <text x="914" y="152" fill="#38bdf8" font-family="Consolas, monospace" font-size="11" font-weight="700">
+        AI OUTPUT (CLAIM)
+      </text>
+      <text x="914" y="176" fill="#e2e8f0" font-family="&#39;Segoe UI&#39;, sans-serif" font-size="13.5" font-weight="600">
+        "VCite dirilis resmi pada
+      </text>
+      <text x="914" y="198" fill="#6ee7b7" font-family="Consolas, monospace" font-size="14" font-weight="700">
+        tahun 2024."  [OK]
+      </text>
+
+      
+      <text x="644" y="242" fill="#94a3b8" font-family="Consolas, monospace" font-size="11.5" font-weight="700">
+        COSINE SIMILARITY: 100%  |  ENTITY GUARD: MATCH [2024]
+      </text>
+      <rect x="642" y="252" width="480" height="10" rx="5" fill="#1e293b" />
+      <rect x="642" y="252" width="0" height="10" rx="5" fill="#10b981" class="bar-1" />
+
+      
+      <g class="verdict-1">
+        <rect x="642" y="282" width="480" height="66" rx="12" fill="#064e3b" stroke="#10b981" stroke-width="1.8" />
+        <circle cx="678" cy="315" r="15" fill="#10b981" />
+        <polyline points="671,315 676,320 686,309" fill="none" stroke="#022c22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="706" y="311" fill="#ecfdf5" font-family="&#39;Segoe UI&#39;, sans-serif" font-size="16" font-weight="800" letter-spacing="0.5">
+          STATUS: VERIFIED
+        </text>
+        <text x="706" y="332" fill="#a7f3d0" font-family="Consolas, monospace" font-size="12">
+          Skor &gt;= 75% &amp; seluruh entitas angka sesuai sumber.
+        </text>
+      </g>
+    </g>
+
+    
+    <g class="scene-2">
+      <rect x="642" y="98" width="244" height="24" rx="6" fill="#4c0519" stroke="#f43f5e" stroke-width="1" />
+      <text x="764" y="114" text-anchor="middle" fill="#fda4af" font-family="Consolas, monospace" font-size="11" font-weight="700">
+        CASE 02 // HALLUCINATION TRAP
+      </text>
+
+      
+      <rect x="642" y="132" width="222" height="86" rx="10" fill="#0f172a" stroke="#eab308" stroke-width="1.3" />
+      <text x="656" y="152" fill="#facc15" font-family="Consolas, monospace" font-size="11" font-weight="700">
+        GROUND TRUTH (SOURCE)
+      </text>
+      <text x="656" y="176" fill="#e2e8f0" font-family="&#39;Segoe UI&#39;, sans-serif" font-size="13.5" font-weight="600">
+        "VCite dirilis resmi pada
+      </text>
+      <text x="656" y="198" fill="#fef08a" font-family="Consolas, monospace" font-size="14" font-weight="700">
+        tahun 2024."
+      </text>
+
+      
+      <line x1="864" y1="175" x2="900" y2="175" stroke="#f43f5e" stroke-width="2.5" class="stream-line" />
+
+      
+      <rect x="900" y="132" width="222" height="86" rx="10" fill="#1e1018" stroke="#f43f5e" stroke-width="1.5" />
+      <text x="914" y="152" fill="#fb7185" font-family="Consolas, monospace" font-size="11" font-weight="700">
+        AI OUTPUT (FABRICATED)
+      </text>
+      <text x="914" y="176" fill="#e2e8f0" font-family="&#39;Segoe UI&#39;, sans-serif" font-size="13.5" font-weight="600">
+        "VCite dirilis resmi pada
+      </text>
+      <text x="914" y="198" fill="#fda4af" font-family="Consolas, monospace" font-size="14" font-weight="700">
+        tahun 2026."  [!]
+      </text>
+
+      
+      <text x="644" y="242" fill="#fda4af" font-family="Consolas, monospace" font-size="11.5" font-weight="700">
+        LEXICAL: 86%  |  ENTITY GUARD BLOCKED: [2026 != 2024]
+      </text>
+      <rect x="642" y="252" width="480" height="10" rx="5" fill="#1e293b" />
+      <rect x="642" y="252" width="0" height="10" rx="5" fill="#f43f5e" class="bar-2" />
+
+      
+      <g class="verdict-2">
+        <rect x="642" y="282" width="480" height="66" rx="12" fill="#4c0519" stroke="#f43f5e" stroke-width="1.8" />
+        <polygon points="678,300 693,328 663,328" fill="#fb7185" />
+        <text x="678" y="324" text-anchor="middle" fill="#4c0519" font-family="Arial, sans-serif" font-size="15" font-weight="900">
+          !
+        </text>
+        <text x="706" y="311" fill="#fff1f2" font-family="&#39;Segoe UI&#39;, sans-serif" font-size="16" font-weight="800" letter-spacing="0.5">
+          STATUS: UNSUPPORTED CLAIM
+        </text>
+        <text x="706" y="332" fill="#fecdd3" font-family="Consolas, monospace" font-size="12">
+          Ditolak Entity Guard: tahun 2026 tidak ada di sumber.
+        </text>
+      </g>
+    </g>
+
+    
+    <g class="scanner">
+      <rect x="632" y="0" width="500" height="28" fill="url(#laserBeam)" />
+      <line x1="632" y1="28" x2="1132" y2="28" stroke="#7dd3fc" stroke-width="2.2" filter="url(#cyanGlow)" />
+    </g>
+
+  </g>
+</svg>
