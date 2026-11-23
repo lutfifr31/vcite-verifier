@@ -1,0 +1,47 @@
+@startuml
+title VCite - Sequence Diagram Verifikasi Klaim AI (Arsitektur Modular)
+
+actor Pengguna as User
+participant "UI / CLI Handler" as UI
+participant "ClaimClassifier" as Classifier
+participant "Tokenizer" as Tok
+participant "EntityGuard" as Guard
+participant "SimilarityEngine" as Sim
+
+User -> UI : Input sourceText & aiText
+UI -> Classifier : verifyDocument(sourceText, aiText)
+activate Classifier
+
+Classifier -> Tok : splitSentences(aiText)
+activate Tok
+Tok --> Classifier : aiSentences[]
+deactivate Tok
+
+Classifier -> Tok : splitSentences(sourceText)
+activate Tok
+Tok --> Classifier : sourceSentences[]
+deactivate Tok
+
+loop Untuk setiap kalimat dalam aiSentences
+    Classifier -> Tok : tokenize(kalimat)
+    activate Tok
+    Tok --> Classifier : aiTokens[]
+    deactivate Tok
+
+    Classifier -> Guard : validateEntities(kalimat, sourceText)
+    activate Guard
+    Guard --> Classifier : { isValid, missingEntities }
+    deactivate Guard
+
+    Classifier -> Sim : findBestMatch(aiTokens, sourceSentences)
+    activate Sim
+    Sim --> Classifier : { score, bestQuote }
+    deactivate Sim
+
+    Classifier -> Classifier : determineStatus(score, isValid)
+end
+
+Classifier --> UI : verificationResults[]
+deactivate Classifier
+UI --> User : Tampilkan status & bukti kutipan
+@enduml
